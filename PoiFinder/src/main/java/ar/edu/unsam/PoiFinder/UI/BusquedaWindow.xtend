@@ -14,62 +14,49 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
+class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 
-
-class BusquedaWindow  extends SimpleWindow<BusquedaViewModel>
-{
-	
 	new(WindowOwner parent) {
 		super(parent, new BusquedaViewModel)
-		//title = "Busquedaaaaaa"
+	// title = "Busquedaaaaaa"
 	}
-	
-	
-	override protected addActions(Panel actionsPanel)
-	{
-		
-		new Button (actionsPanel) => [
-			
-		]
-		
-			
+
+	override protected addActions(Panel actionsPanel) {
+
+		new Button(actionsPanel) => []
+
 	}
-	
-	override protected createFormPanel(Panel mainPanel)
-	{
+
+	override protected createFormPanel(Panel mainPanel) {
 		this.title = "Búsqueda de puntos de interes"
 
-		//VerticalLayout
-		
-		mainPanel.layout = new VerticalLayout
-		
-		new Label(mainPanel).text = "Criterio de Busqueda"
+		new Panel(mainPanel) => [
+			layout = new ColumnLayout(2)
 
-		new Label(mainPanel).text = "Nombre"
-	
-		val searchFormPanel = new Panel(mainPanel).layout =  new ColumnLayout(2)
+			new Label(it).text = "Criterio de busqueda"
+			new Label(it).text = ""
+			new Label(it).text = "Nombre"
+			new Label(it).text = ""
 
-		new TextBox(searchFormPanel).value <=> "nombreDePoiABuscar"
+			new TextBox(it) => [
+				value <=> "nombreDePoiABuscar"
+				width = 200
+			]
+			new Button(it) => [
+				caption = "Buscar"
+			// onClick([|modelObject.search])
+			]
 
-		new Button(searchFormPanel).caption =  "Buscar"
-		
+			new Label(it).text = "Resultados"
 
-		//ColumnLayout(2)
-					
-//		mainPanel.layout = new ColumnLayout(2)
-//			
-//		new TextBox(mainPanel) =>
-//		[
-//			value <=> "nombreDePoiABuscar"
-//		]
-		
-		new Label(mainPanel).text = "Resultado"
-		
+		]
+
 		val gridPois = new Table(mainPanel, typeof(Iop)) => [
 			height = 200
 			numberVisibleRows = 6
 			bindItemsToProperty("poisEncontrados")
 			bindValueToProperty("poiSeleccionado")
+			setNumberVisibleRows(5)
 		]
 
 		new Column<Iop>(gridPois) => [
@@ -77,13 +64,13 @@ class BusquedaWindow  extends SimpleWindow<BusquedaViewModel>
 			title = "Nombre"
 			bindContentsToProperty("nombre")
 		]
-		
+
 		new Column<Iop>(gridPois) => [
 			fixedSize = 150
 			title = "Direccion"
 			bindContentsToProperty("direccion")
 		]
-		
+
 	}
-	
+
 }
