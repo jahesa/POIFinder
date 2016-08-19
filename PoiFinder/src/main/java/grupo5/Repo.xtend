@@ -4,7 +4,9 @@ import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.Entity
 import java.util.List
 import java.util.ArrayList
+import org.uqbar.commons.utils.Observable
 
+@Observable
 class Repo extends CollectionBasedRepo<Iop> {
 	List<Iop> iop = new ArrayList
 
