@@ -4,8 +4,10 @@ import java.util.List
 import java.util.ArrayList
 import org.uqbar.geodds.Point
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.TransactionalAndObservable
 
 @Accessors
+@TransactionalAndObservable
 class Cgp extends Iop {
 	Comuna comuna
 	List<Servicio> servicios
