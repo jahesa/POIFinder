@@ -44,7 +44,7 @@ class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 			]
 			new Button(it) => [
 				caption = "Buscar"
-			// onClick([|modelObject.search])
+				 onClick([|modelObject.search])
 			]
 
 			new Label(it).text = "Resultados"
