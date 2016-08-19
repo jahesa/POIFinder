@@ -12,6 +12,12 @@ class BusquedaViewModel extends BaseViewModel {
 	String nombreDePoiABuscar
 	List<Iop> poisEncontrados 
 	Iop poiSeleccionado	
-		
 	
+	def search(){
+		results=repo.searchFor(nombreDePoiABuscar)
+	}
+	
+	def Repo getRepo() {
+		ApplicationContext.instance.getSingleton(typeof(Iop))
+	}
 }
