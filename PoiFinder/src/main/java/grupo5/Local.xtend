@@ -4,8 +4,10 @@ import org.uqbar.geodds.Point
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import java.util.ArrayList
+import org.uqbar.commons.utils.TransactionalAndObservable
 
 @Accessors
+@TransactionalAndObservable
 class Local extends Iop {
 	var String categoria
 	List<String> palabrasClaves = new ArrayList
