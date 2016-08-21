@@ -1,23 +1,24 @@
 package grupo5
 
-import org.uqbar.commons.model.CollectionBasedRepo
-import org.uqbar.commons.model.Entity
-import java.util.List
 import java.util.ArrayList
+import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.utils.Observable
 
 @Observable
+@Accessors
 class Repo extends CollectionBasedRepo<Iop> {
-	List<Iop> iop = new ArrayList
 
 	def boolean searchByName(String nombre) {
 		allInstances.exists(list|list.matcherXNombre(nombre))
 	}
-
+		
+	List<Iop> iopsResult = new ArrayList
 	def List<Iop> searchFor(String nombre) {
-		iop.clear
-		allInstances.forEach(list|if(list.matcherXNombre(nombre)) iop.add(list))
-		iop
+		iopsResult.clear
+		allInstances.forEach(list|if(nombre==""||nombre==null||list.matcherXNombre(nombre)) iopsResult.add(list))
+		iopsResult
 	}
 
 	override void update(Iop object) {

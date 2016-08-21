@@ -14,6 +14,7 @@ class Colectivo extends Iop {
 	List<String> dias
 
 	new(int nombre) {
+		this.nombre = "Linea "+ nombre
 		linea = nombre.toString
 		parada = new ArrayList<Point>()
 	}

@@ -32,7 +32,7 @@ abstract class Iop extends Entity {
 	}
 	
 	def Boolean matcherXNombre(String _nombre){
-		nombre==_nombre
+		nombre.startsWith(_nombre)
 	}
 	
 

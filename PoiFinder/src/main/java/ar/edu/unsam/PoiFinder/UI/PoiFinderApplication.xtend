@@ -15,8 +15,6 @@ class PoiFinderApplication extends Application  {
 	}
 	
 	override protected createMainWindow() {
-		var repo = new Repo
-		ApplicationContext.instance.configureSingleton(typeof(Repo), repo)
 		return new BusquedaWindow(this)
 	}
 	

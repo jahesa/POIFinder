@@ -20,6 +20,7 @@ class Cgp extends Iop {
 		servicios = new ArrayList
 	}
 	new(int _numero,Point _coordenada,String barrios,String _director,String calle,String _telefono,List<String> _servicio){
+		nombre = "CGP "+_numero
 		numero=_numero
 		coordenada=_coordenada
 		barrio=barrios

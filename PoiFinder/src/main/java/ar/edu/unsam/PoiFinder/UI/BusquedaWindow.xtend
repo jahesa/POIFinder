@@ -1,30 +1,32 @@
 package ar.edu.unsam.PoiFinder.UI
 
 import grupo5.Iop
+import grupo5.Local
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
+class BusquedaWindow extends SimpleWindow<BusquedaAppModel> {
 
 	new(WindowOwner parent) {
-		super(parent, new BusquedaViewModel)
-	// title = "Busquedaaaaaa"
+		super(parent, new BusquedaAppModel)
 	}
 
 	override protected addActions(Panel actionsPanel) {
-
-		new Button(actionsPanel) => []
-
+		new Button(actionsPanel) => [
+			caption = "Ver Poi"
+			enabled <=> "hayPoiSeleccionado"
+			onClick([|this.verDetalle])
+		]
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -71,6 +73,24 @@ class BusquedaWindow extends SimpleWindow<BusquedaViewModel> {
 			bindContentsToProperty("direccion")
 		]
 
+	}
+	
+	def verDetalle()
+	{
+		openDialog(getDetalleWindow(modelObject.poiSeleccionado))
+	}
+	def dispatch getDetalleWindow(Local poi)
+	{
+		new DetalleLocalWindow(this, poi)
+	}
+	def dispatch getDetalleWindow(Iop poi)
+	{
+		new DetallePoiWindow(this, poi)
+	}
+	
+	def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[|modelObject.search]
+		dialog.open
 	}
 
 }
