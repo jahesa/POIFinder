@@ -7,6 +7,9 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.apache.commons.collections15.Transformer
+import org.uqbar.arena.graphics.Image
+import grupo5.Colectivo
 
 class DetallePoiWindow  extends Dialog<DetallePoiAppModel> {
 	
@@ -26,7 +29,14 @@ class DetallePoiWindow  extends Dialog<DetallePoiAppModel> {
 
 		val detPanel = new Panel(mainPanel)
 		detPanel.layout =  new ColumnLayout(2)
-		new Label(detPanel).text = "Icono"
+		new Label(detPanel).bindImageToProperty("poi", new Transformer<Iop, Image>() {
+			override transform(Iop poi) {
+				if (poi instanceof Colectivo ) new Image("bus.png")
+				else new Image("bank.png")
+			}
+		}) 
+		
+        
 		new Label(detPanel).text = modelObject.poi.nombre
 
 		createChildPanel(detPanel)
