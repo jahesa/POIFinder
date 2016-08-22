@@ -87,6 +87,10 @@ class BusquedaWindow extends SimpleWindow<BusquedaAppModel> {
 	{
 		new DetallePoiWindow(this, poi)
 	}
+	def dispatch getDetalleWindow(Iop poi)
+	{
+		new DetalleCgpWindow(this, poi)
+	}
 	
 	def openDialog(Dialog<?> dialog) {
 		dialog.onAccept[|modelObject.search]
